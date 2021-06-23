@@ -51,12 +51,19 @@ shapes.forEach((shape)=>{
         e.target.style.opacity =1;
         e.target.style.animationPlayState = "paused";
         e.target.style.zIndex = '10';
+        e.target.style.transform = "scale(1)";
     })
     shape.addEventListener("mouseleave", (e)=>{
         e.target.style.opacity = 0.1;
         e.target.style.animationPlayState = "running";
         e.target.style.zIndex = '0';
+        e.target.style.transform = "scale(0.5)";
+
 
     })
 }
 )
+
+let h1 = document.querySelector('main h1')
+
+document.onload(h1.classList.add('active'))

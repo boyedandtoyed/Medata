@@ -8,7 +8,7 @@ body {
 }
 
 nav {
-    width: 100vw;
+    width: 100%;
     height: 100px;
     background: #EC9393;
     position: relative;
@@ -19,11 +19,18 @@ nav {
     clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 100%, 100% 100%, 100% 0%);
     background: url(./logome.jpg);
     background-size: cover;
-    width: 229px;
-    height: 268px;
+    width: 239px;
+    height: 0px;
     margin: 0 auto;
     margin-bottom: 10px;
+    mix-blend-mode:luminosity;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -6px 0px 40px rgba(255, 255, 255, 0.26);
+    animation:fall 0.5s ease-in 1 forwards 1s;
+}
+@keyframes fall{
+    to{
+       height:270px;
+    }
 }
 
 main {
@@ -43,13 +50,24 @@ main h1 {
     text-align: center;
     color: #AAF6ED;
     font-size: 48px;
+    letter-spacing:-0.5em;
+}
+/* h11 gets this class after document loads */
+
+main h1.active{
+    animation:reveal 0.5s ease-in 1 forwards 1s;
 }
 
+@keyframes reveal{
+    to{
+        letter-spacing:0.3px;
+    }
+}
+
+
 .whydata {
-
-    width: 540px;
-
-    margin: 10px auto 10px auto;
+    max-width: 100%;
+    margin: 10px auto 50px auto;
     font-size: 12px;
     line-height: 15px;
     color: #FFFFFF;
@@ -57,17 +75,62 @@ main h1 {
     box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.25), -2px -3px 11px rgba(224, 207, 207, 0.25);
     border-radius: 15px;
     padding: 10px;
-
+    line-height:1.5;
+    font-weight: bold;
+    font-size:1rem;
+    cursor:move;
+    letter-spacing:0.8px;
+    /* transition:letter-spacing 1s ease-in-out; */
+}
+/* .whydata:hover{
+letter-spacing: 0.8px;
+} */
+.whydata p:not(:nth-last-child(1)){
+    /* text-decoration: underline;
+    text-decoration-color:rgb(252, 252, 252);
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px; */
+    box-sizing: content-box;
+    margin-bottom:10px;
+    
 }
 
 .links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "no1 no2 no3"
+                         "a   b   c";
     color: #F2D0D0;
     width: max-content;
     margin-left: auto;
     margin-right: auto;
 }
+.links .no1{
+    grid-area: no1;
+    margin: auto;
+}
+.links .no2{
+    grid-area: no2;
+    margin: auto;
+
+}
+.links .no3{
+    grid-area: no3;
+    margin: auto;
+
+}
+.links .a{
+    grid-area: a;
+}
+.links .b{
+    grid-area: b;
+
+}
+.links .c{
+    grid-area: c;
+
+}
+
 
 .links a {
     text-decoration: none;
@@ -76,6 +139,7 @@ main h1 {
     height: 30px;
     margin: 10px;
     position: relative;
+    outline:none;
     width: 200px;
     line-height: 30px;
     z-index: 100;
@@ -137,7 +201,7 @@ div.shapescontainer {
     position: absolute;
     z-index: 0;
     animation: move 10s linear infinite forwards alternate;
-    opacity: 0.05;
+    opacity: 0.005;
     transform: translate(-50% ,-50%);
     transition: opacity 0.4s ease-in-out;
 }
@@ -146,6 +210,30 @@ div.shapescontainer {
     to {
         top: var(--top);
         left: var(--left);
+    }
+}
+
+@media only screen and (max-width: 1050px){
+    .links{
+        grid-template-columns: 1fr auto;
+        grid-template-areas: "no1 a"
+                             "no2 b"
+                             "no3 c";
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .links{
+        grid-template-columns: 1fr;
+        grid-template-areas: "no1"
+                             "a"
+                             "no2"
+                             "b"
+                             "no3" 
+                             "c";
+    }
+    main h1{
+        font-size:1.5rem;
     }
 }
 
