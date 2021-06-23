@@ -43,7 +43,7 @@ shape.style.setProperty("--left", (Math.random()*1920+"px"));
 shape.style.clipPath = clips[Math.floor(Math.random() * clips.length)]
 })
 
-
+function animate(){
 shapes.forEach((shape)=>{
     shape.addEventListener("mousemove",(e)=>{
         e.target.style.left = e.screenX+"px";
@@ -57,12 +57,14 @@ shapes.forEach((shape)=>{
         e.target.style.opacity = 0.1;
         e.target.style.animationPlayState = "running";
         e.target.style.zIndex = '0';
-        e.target.style.transform = "scale(0.5)";
+        e.target.style.transform = "scale(0.8)";
 
 
     })
 }
 )
+}
+setTimeout(animate,500)//for faster load
 
 let h1 = document.querySelector('main h1')
 
